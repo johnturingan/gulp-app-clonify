@@ -1,6 +1,6 @@
 {
   "name": "gulp-app-clonify",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Clone your application and change all keyword existence",
   "homepage": "https://github.com/johnturingan/gulp-app-clonify",
   "repository": {
