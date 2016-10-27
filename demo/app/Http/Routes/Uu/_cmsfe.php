@@ -1,0 +1,15 @@
+<?php
+Route::group(['prefix'=>'cmsfe'],function(){
+    Route::get('/banking-options','Base\BaseCmsController@bankingOptions');
+    Route::get('/wallets','Base\BaseCmsController@wallets');
+    Route::get('/yeepay-card-types','Base\BaseCmsController@yeepayCardTypes');
+    Route::get('/pmj-winner-url','Base\BaseCmsController@pmjWinnerUrl');
+    Route::get('/offline-deposit-settings','Base\BaseCmsController@offlineFormDisplay');
+    Route::get('/offline-withdrawal-settings','Base\BaseCmsController@offlineWithdrawFormDisplay');
+    Route::get('/rebate-codes','Base\BaseCmsController@rebateCodes');
+    Route::get('/rebate-ordering','Base\BaseCmsController@rebateProductsOrdering');
+    Route::get('/affiliate-products-ordering','Base\BaseCmsController@AffiliateReportProductsOrdering');
+    Route::get('/products-wallet-mapping','Base\BaseCmsController@ProductsWalletMapping');
+    Route::get('/funpayb2b-banks','Base\BaseCmsController@FunpayB2BBanks');
+    Route::get('/tonghuib2b-banks','Base\BaseCmsController@TonghuiB2BBanks');
+});
