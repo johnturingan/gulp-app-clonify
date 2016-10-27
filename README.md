@@ -30,7 +30,7 @@ In your gulpfile.js
 
 ```javascript
 var gulp = require('gulp');
-var clonify = require('gulp-app-clonify);
+var clonify = require('gulp-app-clonify');
 
 gulp.task('clone', function(){
         gulp.src('path/to/the/directory/you/want/to/clone/**/*')
