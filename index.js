@@ -12,12 +12,19 @@ var
 function Clonify(file, options) {
 
     this.file = file;
-    this.options = options;
+    this.options = _.extend({
+        file : {
+            name : '',
+            rename : false,
+            stringCase : 'nc'
+        }
+    }, options);
+
 }
 
 Clonify.prototype = {
 
-    init : function () {
+    execute : function () {
         var self = this;
 
         _.each(this.options.replaceValues, function (val) {
@@ -25,6 +32,11 @@ Clonify.prototype = {
             self.compile(self.file, val);
 
         });
+
+        if (this.options.file.rename) {
+
+            this.file.path = this.renameFile(this.file.path, this.options)
+        }
     },
 
     compile : function (file, search) {
@@ -64,6 +76,54 @@ Clonify.prototype = {
 
         }
 
+    },
+
+    renameFile : function (path, options) {
+
+        var fname = options.clone;
+
+        if (!_.isEmpty(options.file.name)) {
+            fname = options.file.name;
+        }
+
+        var filename = path.replace(/^.*(\\|\/|\:)/, ''),
+            r = []
+            ;
+
+        r[options.base] = fname;
+
+        fname = this.str_replace_key(r, filename, { ci : true, stringCase : options.file.stringCase });
+
+        return path.replace(filename, fname);
+
+    },
+
+    str_replace_key : function (replacePairs, str, options) {
+
+        options = _.extend({
+            ci : false,
+            stringCase : 'nc'
+        }, options);
+
+        var key, re;
+
+        for (key in replacePairs) {
+            if (replacePairs.hasOwnProperty(key)) {
+                re = new RegExp(key, "g" + (options.ci ? "i" : ''));
+                str = str.replace(re, replacePairs[key]);
+            }
+        }
+
+        if (options.stringCase === 'lc') {
+
+            return str.toLowerCase();
+
+        } else if (options.stringCase === 'uc') {
+
+            return str.toUpperCase();
+        }
+
+        return str;
     }
 };
 
@@ -75,7 +135,9 @@ Clonify.prototype = {
  */
 module.exports = function(p) {
 
-    p = p || {};
+    p = _.extend({
+        renameFile : false
+    }, p);
 
     function doClone(file, callback) {
 
@@ -91,7 +153,7 @@ module.exports = function(p) {
 
             var cloner = new Clonify(file, p);
 
-            cloner.init();
+            cloner.execute();
         }
 
         callback(null, file);
@@ -99,3 +161,5 @@ module.exports = function(p) {
 
     return es.map(doClone)
 };
+
+

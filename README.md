@@ -33,28 +33,46 @@ var gulp = require('gulp');
 var clonify = require('gulp-app-clonify');
 
 gulp.task('clone', function(){
-        gulp.src('path/to/the/directory/you/want/to/clone/**/*')
-            .pipe(clonify({
-		            replaceValues : [
-		                {
-		                    key : 'stringYouWantToChange',
-		                    value : 'newValueAfterChange'
-		                },
-		                {
-		                    key : 'couldBeARegularExpression',
-		                    value : 'newValueAfterChange'
-		                }
-		            ]
-		        }))
-            .pipe(gulp.dest('.'))
+    gulp.src('path/to/the/directory/you/want/to/clone/**/*')
+        .pipe(clonify({
+            base : 'baseName',
+            clone : 'CloneName',
+            replaceValues : [
+                {
+                    key : 'stringYouWantToChange',
+                    value : 'newValueAfterChange'
+                },
+                {
+                    key : 'couldBeARegularExpression',
+                    value : 'newValueAfterChange'
+                }
+            ]
+        }))
+        .pipe(gulp.dest('.'))
+});
 
 
 ```
 
 ## Options
 
-As of now, there is only 1 option that you can use:
+As of now, there 2 major option that you can use:
 
+* `file` - File related options
+	* `rename [default: false]` - Whether or not rename the output filename
+	* `name` - if defined, the module will use this to rename the filename. Note that this will not totally replace the whole filename but only replace the string in relation to the **host**. 
+	
+	```
+	Ex:
+	filename : BASE-whatever.js
+	output :  NEWNAME-whatever.js
+	
+	```
+	
+	* `stringCase [default: nc]` - If you want to change case of filename
+		* nc = Neutral Case
+		* lc = Lower Case
+		* uc = Upper Case
 * `replaceValues`
     * array of key value object
     	* key : Can be a string or a regular expression
