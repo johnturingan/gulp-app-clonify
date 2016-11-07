@@ -36,7 +36,7 @@ gulp.task('clone', function () {
 });
 
 /**
- * Default
+ * clone-with-replace-filename
  */
 gulp.task('clone-with-replace-filename', function () {
 
@@ -73,6 +73,54 @@ gulp.task('clone-with-replace-filename', function () {
         .on('error', g.util.log)
         ;
 });
+
+/**
+ * CLONE WITH DIRECTORY OPTIONS
+ *
+ */
+gulp.task('clone-with-replace-directory', function () {
+
+    var base = g.util.env.baseApp,
+        clone = g.util.env.cloneApp
+        ;
+
+    return gulp.src([
+        './app/**/' + base + '/**/*'
+    ])
+        .pipe(clonify({
+            base : base,
+            clone : clone,
+            directory : {
+                rename : true,
+                stringCase : 'nc'
+            },
+            replaceValues : [
+                {
+                    key : 'Uu\\',
+                    value : 'NewClone\\'
+                },
+                {
+                    key : '\\Uu',
+                    value : '\\NewClone'
+                },
+                {
+                    key : '99uu',
+                    value : 'newclone'
+                },
+                {
+                    key : 'uu',
+                    value : 'newclone'
+                }
+            ]
+        }))
+        .pipe(gulp.dest(function(file) {
+            return file.base;
+        }))
+        .on('error', g.util.log)
+        ;
+});
+
+
 
 /**
  * CLONE CONTROLLERS

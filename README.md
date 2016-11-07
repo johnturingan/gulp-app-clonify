@@ -56,8 +56,8 @@ gulp.task('clone', function(){
 
 ## Options
 
-As of now, there 2 major option that you can use:
-
+* `base` - Name of Base Application
+* `clone` - Name of Clone Application
 * `file` - File related options
 	* `rename [default: false]` - Whether or not rename the output filename
 	* `name` - if defined, the module will use this to rename the filename. Note that this will not totally replace the whole filename but only replace the string in relation to the **host**. 
@@ -77,7 +77,15 @@ As of now, there 2 major option that you can use:
     * array of key value object
     	* key : Can be a string or a regular expression
     	* value : string
+* `directory` - Directory related options. Basically its the same as the file option. same parameters, same rule: 
 
+```
+{
+	rename : 'false',
+	name : '',
+	stringCase : 'nc'
+}
+```
 
 
 ## Usage

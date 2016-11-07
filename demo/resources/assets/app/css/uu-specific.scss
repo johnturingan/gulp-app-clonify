@@ -1,0 +1,33 @@
+//
+// Base
+// ----------------------------------------------
+
+// -- CORE VARIABLES AND MIXINS
+@import "../../styles/uu/variables";
+@import "../../vendor/bootstrap-sass-official/assets/stylesheets/bootstrap/variables";
+@import "../../vendor/bootstrap-sass-official/assets/stylesheets/bootstrap/mixins";
+
+// -- GLOBAL
+@import "../../styles/core/mixins";
+@import "../../styles/core/mixins-flexbox";
+@import "../../styles/core/grid-flex";
+
+// -- VENDOR
+@import "../../styles/uu/plugins/vendor";
+
+// -- WIDGETS
+@import "../../styles/uu/widgets/jackpot";
+@import "../../styles/uu/widgets/steps";
+@import "../../styles/uu/widgets/gamebox";
+@import "../../styles/uu/widgets/wallets";
+@import "../../styles/uu/widgets/sidebar";
+@import "../../styles/uu/widgets/livechat";
+
+@import "../../styles/uu/widgets/generic-slider";
+
+@import "../../styles/uu/widgets/header";
+@import "../../styles/uu/widgets/footer";
+@import "../../styles/uu/widgets/slidebars";
+
+// -- PAGES
+@import "../../styles/uu/pages/home";

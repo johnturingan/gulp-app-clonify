@@ -1,0 +1,42 @@
+//
+// Base
+// ----------------------------------------------
+
+// -- CORE VARIABLES AND MIXINS
+@import "../../styles/uu/affiliate/variables";
+
+// -- GLOBAL
+@import "../../styles/core/common";
+@import "../../styles/default/base";
+@import "../../styles/uu/affiliate/base";
+
+// -- COMPONENTS
+@import "../../styles/uu/components/typo";
+@import "../../styles/uu/components/forms";
+@import "../../styles/uu/components/custom-forms";
+@import "../../styles/uu/components/buttons";
+@import "../../styles/uu/components/navs";
+@import "../../styles/uu/components/card";
+@import "../../styles/uu/components/modal";
+@import "../../styles/uu/components/hero";
+@import "../../styles/uu/components/scroll-top";
+@import "../../styles/uu/affiliate/components/modal";
+
+// -- VENDOR
+@import "../../styles/plugins/vendor";
+
+// -- WIDGETS
+@import "../../styles/uu/widgets/footer";
+@import "../../styles/uu/affiliate/widgets/header";
+
+// -- PAGES
+@import "../../styles/uu/pages/contact";
+@import "../../styles/uu/affiliate/pages/signup";
+@import "../../styles/uu/affiliate/pages/trackingStatistics";
+
+// -- MEDIA QUERIES
+@import "../../styles/uu/affiliate/responsive";
+
+body, .body {
+    display: block !important;
+}

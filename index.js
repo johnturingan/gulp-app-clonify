@@ -7,13 +7,18 @@ var
     glob    = require('glob'),
     replace = require('gulp-replace'),
     _       = require('lodash')
-;
+    ;
 
 function Clonify(file, options) {
 
     this.file = file;
     this.options = _.extend({
         file : {
+            name : '',
+            rename : false,
+            stringCase : 'nc'
+        },
+        directory : {
             name : '',
             rename : false,
             stringCase : 'nc'
@@ -36,6 +41,10 @@ Clonify.prototype = {
         if (this.options.file.rename) {
 
             this.file.path = this.renameFile(this.file.path, this.options)
+        }
+
+        if (this.options.directory.rename) {
+            this.file.path = this.renameDir(this.file.path, this.options);
         }
     },
 
@@ -95,6 +104,25 @@ Clonify.prototype = {
         fname = this.str_replace_key(r, filename, { ci : true, stringCase : options.file.stringCase });
 
         return path.replace(filename, fname);
+
+    },
+
+    renameDir : function (path, options) {
+
+        var fname = options.clone;
+
+        if (!_.isEmpty(options.directory.name)) {
+            fname = options.directory.name;
+        }
+
+        var r = []
+            ;
+
+        r[options.base] = fname;
+
+        fname = this.str_replace_key(r, path, { ci : true, stringCase : options.directory.stringCase });
+
+        return path.replace(path, fname);
 
     },
 
